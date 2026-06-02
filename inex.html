@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مخزن النخبة الرقمي | Elite Digital Store</title>
+    <style>
+      /* --- الإعدادات العامة والمتغيرات --- */
+      :root {
+        --bg-dark: #0a0a0a;
+        --bg-surface: #121212;
+        --bg-card: #1a1a1a;
+        --gold: #d4af37;
+        --gold-hover: #f3e5ab;
+        --text-light: #ffffff;
+        --text-muted: #a0a0a0;
+        --border: #2a2a2a;
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        overflow-x: hidden;
+      }
+
+      /* --- شريط التنقل (Navbar) --- */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--text-light);
+        text-decoration: none;
+        letter-spacing: 1px;
+      }
+
+      .logo span {
+        color: var(--gold);
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      .nav-menu a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 15px;
+        transition: var(--transition);
+      }
+
+      .nav-menu a:hover {
+        color: var(--gold);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .cart-icon-btn {
+        background: none;
+        border: none;
+        color: var(--text-light);
+        font-size: 20px;
+        cursor: pointer;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .cart-icon-btn:hover {
+        color: var(--gold);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        left: -10px;
+        background: var(--gold);
+        color: var(--bg-dark);
+        font-size: 11px;
+        font-weight: bold;
+        padding: 2px 6px;
+        border-radius: 50%;
+      }
+
+      /* --- قسم الهيرو (Hero Section) --- */
+      .hero {
+        padding: 180px 20px 100px 20px;
+        text-align: center;
+        background: radial-gradient(
+          circle at center,
+          #1a1508 0%,
+          var(--bg-dark) 70%
+        );
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+        font-weight: 800;
+        line-height: 1.3;
+      }
+
+      .hero h1 span {
+        color: var(--gold);
+        display: block;
+        font-size: 56px;
+        margin-top: 5px;
+      }
+
+      .hero p {
+        color: var(--text-muted);
+        font-size: 18px;
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+        line-height: 1.6;
+      }
+
+      .hero-btn {
+        display: inline-block;
+        background: linear-gradient(45deg, var(--gold), #b89020);
+        color: var(--bg-dark);
+        padding: 15px 40px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+      }
+
+      .hero-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      }
+
+      /* --- قسم الفئات (Categories) --- */
+      .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 50px;
+        position: relative;
+      }
+
+      .section-title span {
+        color: var(--gold);
+      }
+
+      .categories-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+      }
+
+      .category-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        padding: 30px 20px;
+        text-align: center;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .category-card:hover {
+        border-color: var(--gold);
+        transform: translateY(-5px);
+        background: #151515;
+      }
+
+      .category-icon {
+        font-size: 35px;
+        margin-bottom: 15px;
+        display: block;
+      }
+
+      .category-card h3 {
+        font-size: 16px;
+        color: var(--text-light);
+      }
+
+      /* --- قسم المنتجات (Products) --- */
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .product-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        overflow: hidden;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(212, 175, 55, 0.4);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      }
+
+      /* مساحة فارغة بديلة للصورة placeholder */
+      .product-image-placeholder {
+        width: 100%;
+        height: 200px;
+        background: #222;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 45px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .product-info {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .product-title {
+        font-size: 19px;
+        margin-bottom: 10px;
+        color: var(--text-light);
+      }
+
+      .product-desc {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        flex-grow: 1;
+      }
+
+      .product-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .product-price {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--gold);
+      }
+
+      .product-buttons {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+      }
+
+      .btn-add-cart {
+        background: transparent;
+        color: var(--text-light);
+        border: 1px solid var(--border);
+        padding: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .btn-add-cart:hover {
+        background: var(--text-light);
+        color: var(--bg-dark);
+      }
+
+      .btn-buy-now {
+        background: var(--gold);
+        color: var(--bg-dark);
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: var(--transition);
+      }
+
+      .btn-buy-now:hover {
+        background: var(--gold-hover);
+      }
+
+      /* --- قسم المميزات (Features) --- */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-item {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        padding: 40px 30px;
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      .feature-icon {
+        font-size: 40px;
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+
+      .feature-item h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .feature-item p {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      /* --- قسم آراء العملاء (Testimonials) --- */
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-card {
+        background: var(--bg-card);
+        border-left: 3px solid var(--gold);
+        padding: 30px;
+        border-radius: 4px;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: var(--text-muted);
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .testimonial-user {
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .testimonial-user span {
+        color: var(--gold);
+        font-size: 12px;
+        display: block;
+        margin-top: 5px;
+      }
+
+      /* --- قسم الأسئلة الشائعة (FAQ) --- */
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: var(--bg-surface);
+        border: 1px solid var(--border);
+        margin-bottom: 15px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        padding: 22px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+        user-select: none;
+      }
+
+      .faq-question::after {
+        content: "＋";
+        color: var(--gold);
+        font-size: 18px;
+        transition: var(--transition);
+      }
+
+      .faq-item.active .faq-question::after {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .faq-answer p {
+        padding: 0 30px 22px 30px;
+        color: var(--text-muted);
+        line-height: 1.6;
+        font-size: 15px;
+      }
+
+      /* --- لوحة سلة المشتريات (Cart Drawer) --- */
+      .cart-drawer {
+        position: fixed;
+        top: 0;
+        left: -400px;
+        width: 400px;
+        height: 100%;
+        background: var(--bg-surface);
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.8);
+        z-index: 2000;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--border);
+      }
+
+      .cart-drawer.active {
+        left: 0;
+      }
+
+      .cart-header {
+        padding: 25px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-header h2 {
+        font-size: 20px;
+      }
+
+      .close-cart {
+        background: none;
+        border: none;
+        color: var(--text-light);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .cart-items-list {
+        padding: 25px;
+        overflow-y: auto;
+        flex-grow: 1;
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .cart-item-details h4 {
+        font-size: 15px;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-details p {
+        color: var(--gold);
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .btn-remove-item {
+        background: none;
+        border: none;
+        color: #ff4d4d;
+        cursor: pointer;
+        font-size: 13px;
+      }
+
+      .cart-footer {
+        padding: 25px;
+        border-top: 1px solid var(--border);
+        background: var(--bg-card);
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+
+      .cart-total span:last-child {
+        color: var(--gold);
+      }
+
+      .btn-checkout {
+        width: 100%;
+        background: var(--gold);
+        color: var(--bg-dark);
+        border: none;
+        padding: 15px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .btn-checkout:hover {
+        background: var(--gold-hover);
+      }
+
+      .cart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1500;
+        display: none;
+      }
+
+      .cart-overlay.active {
+        display: block;
+      }
+
+      /* --- التذييل (Footer) --- */
+      footer {
+        background: var(--bg-surface);
+        border-top: 1px solid var(--border);
+        padding: 60px 20px 30px 20px;
+      }
+
+      .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-about h3 {
+        font-size: 22px;
+        margin-bottom: 15px;
+      }
+
+      .footer-about h3 span {
+        color: var(--gold);
+      }
+
+      .footer-about p {
+        color: var(--text-muted);
+        font-size: 14px;
+        line-height: 1.6;
+      }
+
+      .footer-links h4 {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: var(--gold);
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 14px;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--text-light);
+        padding-right: 5px;
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        border-top: 1px solid var(--border);
+        padding-top: 30px;
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 13px;
+      }
+
+      /* --- تصميم متجاوب لشاشات الهواتف --- */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none; /* يمكن تحسينه لاحقًا بقائمة هامبرغر */
+        }
+        .hero h1 {
+          font-size: 32px;
+        }
+        .hero h1 span {
+          font-size: 38px;
+        }
+        .cart-drawer {
+          width: 100%;
+          left: -100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav-container">
+        <a href="#" class="logo">نُخبة<span>.</span></a>
+        <ul class="nav-menu">
+          <li><a href="#">الرئيسية</a></li>
+          <li><a href="#categories">الفئات</a></li>
+          <li><a href="#products">المنتجات</a></li>
+          <li><a href="#features">مميزاتنا</a></li>
+          <li><a href="#faq">الأسئلة الشائعة</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="cart-icon-btn" onclick="toggleCart()">
+            🛒 <span class="cart-count" id="cart-count">0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>
+        ارتقِ بأعمالك مع المنتجات <span class="gold-text">الرقمية الفاخرة</span>
+      </h1>
+      <p>
+        مجموعات حصرية من البرامج، الأدوات، التصاميم، والدورات التعليمية
+        الاحترافية المصممة بعناية لتقود نجاحك الرقمي.
+      </p>
+      <a href="#products" class="hero-btn">تصفح المنتجات الفاخرة</a>
+    </section>
+
+    <section class="section-container" id="categories">
+      <h2 class="section-title">الأقسام <span>الرقمية</span></h2>
+      <div class="categories-grid">
+        <div class="category-card" onclick="filterCategory('all')">
+          <span class="category-icon">✨</span>
+          <h3>الكل</h3>
+        </div>
+        <div class="category-card" onclick="filterCategory('books')">
+          <span class="category-icon">📚</span>
+          <h3>الكتب الإلكترونية</h3>
+        </div>
+        <div class="category-card" onclick="filterCategory('courses')">
+          <span class="category-icon">🎓</span>
+          <h3>الدورات التعليمية</h3>
+        </div>
+        <div class="category-card" onclick="filterCategory('templates')">
+          <span class="category-icon">📐</span>
+          <h3>القوالب والملفات</h3>
+        </div>
+        <div class="category-card" onclick="filterCategory('fonts')">
+          <span class="category-icon">✒️</span>
+          <h3>الخطوط العربية</h3>
+        </div>
+        <div class="category-card" onclick="filterCategory('tools')">
+          <span class="category-icon">🛠️</span>
+          <h3>الأدوات والبرامج</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-container" id="products">
+      <h2 class="section-title">المنتجات <span>المميزة</span></h2>
+      <div class="products-grid" id="products-container"></div>
+    </section>
+
+    <section class="section-container" id="features">
+      <h2 class="section-title">لماذا تختار <span>منصتنا</span>؟</h2>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-icon">⚡</span>
+          <h3>تحميل فوري مباشر</h3>
+          <p>
+            بمجرد إتمام عملية الدفع الفاخرة، ستحصل على روابط التحميل لمنتجاتك
+            مباشرة دون أي انتظار.
+          </p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🛡️</span>
+          <h3>أمان وجودة عالية</h3>
+          <p>
+            جميع منتجاتنا الرقمية تفحص وتنتقى بعناية فائقة لضمان أعلى مستويات
+            الأمان والجودة الحصرية.
+          </p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">💎</span>
+          <h3>دعم فني متميز</h3>
+          <p>
+            فريق خدمة عملاء نخبي متاح على مدار الساعة للإجابة على استفساراتك
+            ومساعدتك بعد الشراء.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-container" id="testimonials">
+      <h2 class="section-title">ماذا قالوا <span>عنا</span></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "جودة القوالب والخطوط هنا تفوق التوقعات. من أفضل المتاجر الفخمة التي
+            تعاملت معها في الشرق الأوسط وتوفر دعمًا سريعًا جدًا."
+          </p>
+          <div class="testimonial-user">
+            عبد العزيز الشمري <span>رائد أعمال</span>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "الدورات الرقمية والكتب المتوفرة غنية بالمعلومات وتطبيقاتها عملية
+            للغاية. تجربة شراء سلسلة وسريعة للغاية."
+          </p>
+          <div class="testimonial-user">
+            سارة المهندس <span>مصممة واجهات</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-container" id="faq">
+      <h2 class="section-title">الأسئلة <span>الشائعة</span></h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            كيف يمكنني استلام المنتج الرقمي بعد الشراء؟
+          </div>
+          <div class="faq-answer">
+            <p>
+              بمجرد إتمام الدفع بنجاح، ستتحول تلقائيًا إلى صفحة التحميل، كما
+              سنرسل لك رسالة بريد إلكتروني تحتوي على روابط تحميل مباشرة وآمنة
+              لجميع ملفاتك.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            هل يمكنني الحصول على تحديثات المنتجات؟
+          </div>
+          <div class="faq-answer">
+            <p>
+              نعم، جميع الأدوات، البرامج، والقوالب التي تشتريها من متجرنا ستحصل
+              على تحديثاتها الدورية بشكل مجاني ومدى الحياة من خلال حسابك.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            ما هي وسائل الدفع المدعومة؟
+          </div>
+          <div class="faq-answer">
+            <p>
+              نحن ندعم كافة بطاقات الدفع الائتمانية والحلول الذكية والفاخرة
+              لضمان عملية دفع آمنة ومشفرة بالكامل.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-drawer" id="cart-drawer">
+      <div class="cart-header">
+        <h2>سلة المشتريات الفاخرة</h2>
+        <button class="close-cart" onclick="toggleCart()">✕</button>
+      </div>
+      <div class="cart-items-list" id="cart-items-container"></div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>الإجمالي:</span>
+          <span id="cart-total-price">0.00 $</span>
+        </div>
+        <button class="btn-checkout" onclick="checkout()">
+          إتمام الطلب بأمان
+        </button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>نُخبة<span>.</span></h3>
+          <p>
+            الوجهة الأولى للمحترفين ورواد الأعمال الباحثين عن التميز الرقمي
+            المطلق من خلال منتجات رقمية فاخرة وحصرية.
+          </p>
+        </div>
+        <div class="footer-links">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="#">الرئيسية</a></li>
+            <li><a href="#products">المنتجات المميزة</a></li>
+            <li><a href="#features">مميزاتنا الفاخرة</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>الدعم والمساعدة</h4>
+          <ul>
+            <li><a href="#faq">الأسئلة الشائعة</a></li>
+            <li><a href="#">شروط الخدمة</a></li>
+            <li><a href="#">سياسة الخصوصية</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 متجر نُخبة الرقمي. جميع الحقوق محفوظة بالكامل.
+      </div>
+    </footer>
+
+    <script>
+      // مصفوفة المنتجات الرقمية (بيانات المنتجات)
+      const products = [
+        {
+          id: 1,
+          name: "كتاب: أسرار القيادة الرقمية",
+          price: 29,
+          category: "books",
+          desc: "دليلك الشامل لبناء وتوسيع نشاطك التجاري على الإنترنت بشكل احترافي.",
+          icon: "📘",
+        },
+        {
+          id: 2,
+          name: "دورة هندسة الواجهات الكاملة",
+          price: 149,
+          category: "courses",
+          desc: "أكثر من 40 ساعة من الدروس المتقدمة لتصبح مصمم واجهات محترف.",
+          icon: "🎥",
+        },
+        {
+          id: 3,
+          name: "حزمة قوالب Notion لإدارة المشاريع",
+          price: 19,
+          category: "templates",
+          desc: "أنظمة عمل جاهزة ومتكاملة لتنظيم الشركات والفرق البرمجية الفاخرة.",
+          icon: "📊",
+        },
+        {
+          id: 4,
+          name: "مجموعة الخطوط العربية النخبوية",
+          price: 45,
+          category: "fonts",
+          desc: "15 خطًا عربيًا فاخرًا مخصصًا للعناوين والهويات البصرية الرقمية.",
+          icon: "✒️",
+        },
+        {
+          id: 5,
+          name: "أداة الأتمتة الذكية للمتاجر",
+          price: 89,
+          category: "tools",
+          desc: "إضافة برمجية احترافية تزيد من مبيعات متجرك الإلكتروني تلقائيًا.",
+          icon: "⚙️",
+        },
+        {
+          id: 6,
+          name: "ملفات تصميم واجهات وتطبيقات جاهزة",
+          price: 35,
+          category: "templates",
+          desc: "قوالب Figma عصرية وقابلة للتعديل بالكامل للمتاجر والتطبيقات.",
+          icon: "🎨",
+        },
+      ];
+
+      // مصفوفة لتخزين عناصر السلة المضافة
+      let cart = [];
+
+      // دالة لعرض المنتجات في الصفحة الرئيسية
+      function renderProducts(productsToRender) {
+        const container = document.getElementById("products-container");
+        container.innerHTML = "";
+
+        productsToRender.forEach((product) => {
+          const card = document.createElement("div");
+          card.className = "product-card";
+          card.setAttribute("data-category", product.category);
+
+          card.innerHTML = `
+                    <div class="product-image-placeholder">${product.icon}</div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-desc">${product.desc}</p>
+                        <div class="product-meta">
+                            <span class="product-price">${product.price} $</span>
+                        </div>
+                        <div class="product-buttons">
+                            <button class="btn-add-cart" onclick="addToCart(${product.id})">إضافة للسلة</button>
+                            <button class="btn-buy-now" onclick="buyNow(${product.id})">شراء الآن</button>
+                        </div>
+                    </div>
+                `;
+          container.appendChild(card);
+        });
+      }
+
+      // تصفية المنتجات حسب الفئة المحددة
+      function filterCategory(category) {
+        if (category === "all") {
+          renderProducts(products);
+        } else {
+          const filtered = products.filter((p) => p.category === category);
+          renderProducts(filtered);
+        }
+      }
+
+      // فتح وإغلاق سلة المشتريات الجانبية
+      function toggleCart() {
+        document.getElementById("cart-drawer").classList.toggle("active");
+        document.getElementById("cart-overlay").classList.toggle("active");
+      }
+
+      // إضافة منتج إلى سلة المشتريات
+      function addToCart(productId) {
+        const product = products.find((p) => p.id === productId);
+        const exists = cart.find((item) => item.id === productId);
+
+        if (exists) {
+          alert("المنتج مضاف بالفعل في السلة الفاخرة.");
+          return;
+        }
+
+        cart.push(product);
+        updateCartUI();
+      }
+
+      // شراء المنتج مباشرة (إضافة للسلة ثم فتحها)
+      function buyNow(productId) {
+        const exists = cart.find((item) => item.id === productId);
+        if (!exists) {
+          const product = products.find((p) => p.id === productId);
+          cart.push(product);
+        }
+        updateCartUI();
+        toggleCart();
+      }
+
+      // حذف عنصر من سلة المشتريات
+      function removeFromCart(productId) {
+        cart = cart.filter((item) => item.id !== productId);
+        updateCartUI();
+      }
+
+      // تحديث واجهة السلة والعداد والأسعار الإجمالية تلقائيًا
+      function updateCartUI() {
+        document.getElementById("cart-count").innerText = cart.length;
+        const container = document.getElementById("cart-items-container");
+        container.innerHTML = "";
+
+        let total = 0;
+
+        cart.forEach((item) => {
+          total += item.price;
+          const itemElement = document.createElement("div");
+          itemElement.className = "cart-item";
+          itemElement.innerHTML = `
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p>${item.price} $</p>
+                    </div>
+                    <button class="btn-remove-item" onclick="removeFromCart(${item.id})">إزالة</button>
+                `;
+          container.appendChild(itemElement);
+        });
+
+        document.getElementById("cart-total-price").innerText = total + ".00 $";
+      }
+
+      // محاكاة عملية إتمام الطلب الشراء والدفع
+      function checkout() {
+        if (cart.length === 0) {
+          alert(
+            "السلة فارغة حاليًا. قم بإضافة بعض المنتجات الرقمية الفخمة أولاً.",
+          );
+          return;
+        }
+        alert(
+          "نشكرك على ثقتك بالنخبة! جاري تحويلك لبوابة الدفع الفاخرة والمشفرة...",
+        );
+        cart = [];
+        updateCartUI();
+        toggleCart();
+      }
+
+      // فتح وإغلاق الأسئلة الشائعة بنعومة (Accordion)
+      function toggleFaq(element) {
+        const item = element.parentElement;
+        const answer = item.querySelector(".faq-answer");
+
+        item.classList.toggle("active");
+
+        if (item.classList.contains("active")) {
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        } else {
+          answer.style.maxHeight = "0";
+        }
+      }
+
+      // تشغيل البناء الأولي للمنتجات عند تحميل الصفحة
+      window.onload = function () {
+        renderProducts(products);
+      };
+    </script>
+  </body>
+</html>
