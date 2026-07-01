@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إلى رحمة</title>
+    <!-- استدعاء الخطوط -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ربط ملف الـ CSS الخارجي -->
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <!-- الظرف -->
+      <div class="envelope-box" id="envelopeBox" onclick="handleEnvelopeOpen()">
+        <div class="envelope-flap"></div>
+
+        <!-- ورقة الخطاب الكاملة والواضحة -->
+        <div
+          class="letter-paper"
+          id="letterPaper"
+          onclick="preventClose(event)"
+        >
+          <div class="letter-content">
+            <p
+              style="
+                text-align: center;
+                font-weight: bold;
+                font-size: 1.5rem;
+                color: var(--pink-dark);
+              "
+            >
+              السلام عليكم ورحمة الله وبركاته ❤️
+            </p>
+
+            <p>
+              رحمة محمد، أحب أقولك إنك أول ما دخلتي حياتي وبقيتِ منورة بشكل جميل
+              أوي بجد. يمكن أثرت عليكي بالإيجاب، الله أعلم، بس اللي أعرفه ومتأكد
+              منه إني بحبك حب يا رحمة مش طبيعي. 💖
+            </p>
+
+            <p>
+              بعشقك... بعشق كلامك وصوتك وعيونك وروحك ولسانك وكلامك الحلو، ودينك
+              وأخلاقك وكل حاجة فيكي. أنتي ملاك من السماء. انتي لما ربي خلق جميع
+              البشر، أعتقد أنو زرع فيكي المحبة، وأخد ضلعي ووضعه فيكي انتي. ✨
+            </p>
+
+            <p>
+              أنا كل ما أشوفك أو أتكلم معاكي وأسمع صوتك بفرح فرح مش طبيعي بجد.
+              أنتي دعائي، أنتي ملاكي، أنتي كل شئ حلو في دنيتي. أنا نفسي نتجوز
+              وتكوني من نصيبي وربي يستجيب دعائي ليكي. 💍
+            </p>
+
+            <p>
+              انتي شخصية جميلة جداً لدرجة لو الورد والفراشة شافوكي هيتقهرو من
+              جمالك الفتّان. أنا بحبك وهفضل أحبك وأدعي ليكي، وباذن الله سيستجاب
+              يا حلوتي ويا أم أيوب العظيمة. 🌸
+            </p>
+
+            <div class="signature-zone">توقيع: أبو أيوب ✍️</div>
+          </div>
+        </div>
+
+        <div class="envelope-pocket"></div>
+
+        <div class="ribbon-name">
+          <span>رحمة ✨💖✨</span>
+        </div>
+      </div>
+
+      <!-- سيكشن السؤال -->
+      <div class="question-section" id="questionSection">
+        <h2 class="question-title">هل تحبيني يا حلوتي؟ 🥰❤️</h2>
+        <div class="btn-wrapper">
+          <button class="action-btn btn-yes" onclick="showSuccessResponse()">
+            نعم
+          </button>
+          <button
+            class="action-btn btn-no"
+            id="btnNo"
+            onmouseover="moveNoButton()"
+            onclick="triggerAlert()"
+          >
+            لا
+          </button>
+        </div>
+      </div>
+
+      <!-- شاشة النهاية والدعاء تظهر بالأسفل دون إخفاء الرسالة العلوية -->
+      <div class="final-celebration" id="finalCelebration">
+        <h2 class="response-title">وأنا كمان بعشقك بس... 😍❤️</h2>
+        <div class="prayer-card">
+          <div class="prayer-inner-text">
+            <p>
+              أسأل الله الكريم رب العرش العظيم أن يملأ قلبكِ بالفرح والسرور، وأن
+              يستجيب لكل دعواتنا ويجمعنا في حلاله قريباً لتكوني سيدة بيتي وأم
+              أيوب الغالية. اضحكي يا رحمة وابتسمي، فضحكتك الجميلة هي اللي بتنور
+              عتمة الدنيا وتفرح قلب أبو أيوب! 💖🌸✨
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- كود الـ JavaScript للتفاعل ذكي -->
+    <script>
+      let isOpened = false;
+      let escapeClicks = 0;
+
+      function handleEnvelopeOpen() {
+        if (isOpened) return;
+        isOpened = true;
+        document.getElementById("envelopeBox").classList.add("open");
+
+        setTimeout(() => {
+          document.getElementById("questionSection").style.display = "block";
+        }, 700);
+      }
+
+      function preventClose(event) {
+        event.stopPropagation();
+      }
+
+      function moveNoButton() {
+        const btnNo = document.getElementById("btnNo");
+        if (escapeClicks < 3) {
+          btnNo.style.position = "absolute";
+          const x = (Math.random() - 0.5) * 300;
+          const y = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 60 + 40);
+          btnNo.style.transform = `translate(${x}px, ${y}px)`;
+          escapeClicks++;
+        } else {
+          btnNo.style.position = "static";
+          btnNo.style.transform = `translate(0px, 0px)`;
+          triggerAlert();
+        }
+      }
+
+      document
+        .getElementById("btnNo")
+        .addEventListener("touchstart", function (e) {
+          e.preventDefault();
+          moveNoButton();
+        });
+
+      function triggerAlert() {
+        alert("كدابة.. انتي تحبيني 😢💔");
+        escapeClicks = 0;
+        const btnNo = document.getElementById("btnNo");
+        btnNo.style.position = "static";
+        btnNo.style.transform = `translate(0px, 0px)`;
+      }
+
+      function showSuccessResponse() {
+        document.getElementById("questionSection").style.display = "none";
+        document.getElementById("finalCelebration").style.display = "block";
+
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    </script>
+  </body>
+</html>
