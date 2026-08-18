@@ -1,0 +1,234 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #feada6 100%);
+  font-family: "Cairo", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* غلاف الجواب */
+.envelope-container {
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: #e74c3c;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease;
+}
+
+.envelope:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.front {
+  text-align: center;
+  color: white;
+}
+
+.heart-seal {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.click-instruction {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* الورقة الداخلية */
+.letter-container {
+  width: 100%;
+  max-width: 650px;
+  background: #fffdf9;
+  border-radius: 15px;
+  padding: 35px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 2px solid #f3a683;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.header-blessing {
+  background-color: #fff0f3;
+  border-right: 4px solid #ff4d6d;
+  padding: 15px;
+  border-radius: 8px;
+  color: #590d22;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.main-title {
+  color: #c9184a;
+  text-align: center;
+  font-family: "Amiri", serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.romantic-text {
+  color: #4a4a4a;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.poetry-box {
+  background-color: #fdf0ed;
+  border: 1px dashed #e07a5f;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.poetry-line {
+  font-family: "Amiri", serif;
+  font-size: 20px;
+  color: #780000;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.poetry-source {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #8d99ae;
+}
+
+.knight-image-container {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.knight-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border: 3px solid #fff;
+}
+
+.image-caption {
+  font-size: 14px;
+  color: #6c757d;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.encouragement-text {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+/* الأزرار والتفاعل */
+.buttons-group {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.question-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2b2d42;
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 12px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 8px;
+  font-family: "Cairo", sans-serif;
+}
+
+.btn-yes {
+  background-color: #2ec4b6;
+  color: white;
+}
+
+.btn-yes:hover {
+  background-color: #20968b;
+  transform: translateY(-2px);
+}
+
+.btn-no {
+  background-color: #e63946;
+  color: white;
+}
+
+.result-card {
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 20px;
+  animation: popIn 0.5s ease;
+}
+
+.result-card.success {
+  background-color: #e8f8f5;
+  border: 2px solid #2ec4b6;
+  color: #116466;
+}
+
+.result-card.danger {
+  background-color: #ffebee;
+  border: 2px solid #e63946;
+  color: #b71c1c;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
